@@ -161,7 +161,59 @@ void deleteAtLast()
 //Delete at Position
 void deleteAtPos()
 {
-	//wait	
+	int pos;
+	printf("Enter position of node you want to delete: ");
+	scanf("%d",&pos);
+	
+	if(start == NULL)	
+	{
+		printf("Deletion Not possible. Since List is EMPTY. \n");
+	}
+	else if(pos == 1)
+	{
+		if (start->next == start) // only 1 node is present for pos = 1
+		{
+			temp = start;
+			printf("Deleted Elements is : %d\n",temp->data);
+			start = start->next;
+			free(temp);
+		}
+		else // more than 1 nodes are present for pos =1 
+		{
+			temp = start;
+			prev = temp; // to store 1st position node
+			while(temp->next != start)
+			{
+				temp = temp->next;
+			}
+			temp->next = start->next;
+			start = start->next;
+			printf("Deleted Elements is : %d\n",prev->data); // pos =1 store in prev
+			free(prev);	
+		}
+	}
+	else
+	{
+		int count = 1;
+		temp = start;
+		while(temp != start && count != pos)
+		{
+			prev = temp;
+			temp = temp->next;
+			count++;
+		}
+		if(temp != start)
+		{
+			prev->next = temp->next;
+			printf("Deleted Elements is : %d\n",temp->data);
+			free(temp);
+		}
+		else
+		{
+			printf("Invaild position\n");
+		}
+		
+	}
 }
 
 // display a CLL
@@ -181,13 +233,13 @@ void main()
 	printf("Starting CLL...\n\n");
 	insertAtBeg();
 	insertAtBeg();
-	insertAtBeg();
+	//insertAtBeg();
 	//insertAtLast();
 	traverse();
 	//insertAtPos();
 	//deleteAtBeg();
-	deleteAtLast();
+	//deleteAtLast();
+	deleteAtPos();
 	traverse();
 	
 }
-
