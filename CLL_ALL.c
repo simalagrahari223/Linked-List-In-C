@@ -196,13 +196,13 @@ void deleteAtPos()
 	{
 		int count = 1;
 		temp = start;
-		while(temp != start && count != pos)
+		while(temp->next != start && count != pos)
 		{
 			prev = temp;
 			temp = temp->next;
 			count++;
 		}
-		if(temp != start)
+		if(count == pos)
 		{
 			prev->next = temp->next;
 			printf("Deleted Elements is : %d\n",temp->data);
@@ -233,7 +233,7 @@ void main()
 	printf("Starting CLL...\n\n");
 	insertAtBeg();
 	insertAtBeg();
-	//insertAtBeg();
+	insertAtBeg();
 	//insertAtLast();
 	traverse();
 	//insertAtPos();
